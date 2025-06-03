@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+<style>
+	body {
+		background-image: url('{{ asset("image/fond-contact.avif") }}');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+</style>
+
+<div class="d-flex justify-content-center flex-column mx-auto bg-white p-4 rounded shadow my-5" style="width:50%;">
+	<h1 class="text-center">Formulaire de contact</h1>
+
+	{{ form_start(form) }}
+		{{ form_row(form.nom) }}
+		{{ form_row(form.prenom) }}
+		{{ form_row(form.email) }}
+		{{ form_row(form.telephone) }}
+		{{ form_row(form.message) }}
+		
+		<button type="submit" class="btn btn-primary mt-4">Envoyer</button>
+	{{ form_end(form) }}
+</div>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+
+{% endblock %}

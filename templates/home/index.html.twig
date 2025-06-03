@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<style>
+  body {
+    background-image: url('{{ asset("image/mur bleu.jpg") }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
+
+<section class="presentation" style="font-family: sans-serif; max-width: 1200px; margin: auto; padding: 2rem; display: flex; gap: 2rem; align-items: flex-start; color:white;">
+  <!-- Colonne gauche : image -->
+  <div style="flex: 1;">
+    <img src="https://www.capeb.fr/www/capeb/media//aisne/image/ma%C3%A7on.jpg" alt="Maçon au travail" style="width: 100%; height: auto; border-radius: 8px;">
+  </div>
+
+  <!-- Colonne droite : texte -->
+  <div style="flex: 2;">
+    <h2>🧱 Présentation de l'entreprise</h2>
+    <p>
+      <strong>Maçon'ne tout</strong>, artisan maçon depuis plus de <strong>30 ans</strong>, vous accompagne dans tous vos projets de construction, rénovation et aménagement extérieur.
+    </p>
+    <p>
+      Basés à <strong>DOUAI</strong>, nous intervenons auprès des particuliers, professionnels et collectivités pour des travaux de qualité, réalisés dans le respect des normes et des délais.
+    </p>
+    <p>
+      Notre savoir-faire repose sur une expertise traditionnelle alliée à des techniques modernes, afin de garantir solidité, durabilité et esthétique à chacun de vos projets.
+    </p>
+
+    <h3>🔨 Nos domaines d’intervention</h3>
+    <ul>
+      <li>Construction neuve (maisons, garages, dépendances)</li>
+      <li>Rénovation de murs, façades et structures anciennes</li>
+      <li>Création de terrasses, murets, escaliers extérieurs</li>
+      <li>Travaux de gros œuvre et second œuvre</li>
+      <li>Pose de chapes, dalles béton, fondations</li>
+      <li>Agrandissements et extensions</li>
+    </ul>
+
+    <h3>🛠️ Nos engagements</h3>
+    <ul>
+      <li>Un accompagnement personnalisé de l’étude à la livraison</li>
+      <li>Des matériaux certifiés et adaptés à votre projet</li>
+      <li>Une équipe sérieuse, réactive et passionnée par le métier</li>
+      <li>Une garantie décennale sur tous nos travaux</li>
+    </ul>
+
+    <h3>📞 Contactez-nous dès maintenant</h3>
+    <p>
+      Vous avez un projet ? Parlons-en !<br>
+      <strong>Devis gratuit</strong> et conseils sur mesure.<br>
+      Appelez-nous au <strong>0327000000</strong> ou envoyez-nous un message via le <a href="#">formulaire de contact</a>.
+    </p>
+  </div>
+</section>
+
+{% endblock %}
+
