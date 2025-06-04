@@ -24,7 +24,7 @@ final class ChantierController extends AbstractController
     }
 
     #[Route('/new', name: 'app_chantier_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    // #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $chantier = new Chantier();
