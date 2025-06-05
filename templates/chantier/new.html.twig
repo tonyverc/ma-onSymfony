@@ -8,9 +8,18 @@
         color:white;
     }
 </style>
-    <h1>Creation Nouveau Chantier</h1>
+<div class="container d-flex justify-content-center flex-column align-items-center mt-5 min-vh-100">
+    <h1 class="text-center">Nouveau Chantier</h1>
+
+    {% if app.user %}
+        <p class="text-center">Bienvenue, {{ app.user.username }}!</p>
+    {% else %}
+        <p class="text-center">Veuillez vous connecter pour créer un nouveau chantier.</p>
+    {% endif %}
 
     {{ include('chantier/_form.html.twig') }}
 
     <a href="{{ path('app_chantier_index') }}" class="btn btn-primary" >Retour à la liste</a>
+</div>
 {% endblock %}
+

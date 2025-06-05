@@ -1,38 +1,24 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Chantier{% endblock %}
 
 {% block body %}
-    <h1>Chantier</h1>
+<div class="container my-5 d-flex justify-content-center flex-column">
+	<div class="card" style="width:auto;">
+		<div class="card-header ">
+			<h3>{{ chantier.nom }}</h3>
+		</div>
+            <img style ="max-height: 300px; object-fit: cover;" src="{{ asset('images/' ~ chantier.image) }}" class="card-img-top px-4 img-fluid" alt="...">
+		<div class="card-body">
+			<p class="card-text">{{chantier.description}}</p>
+		</div>
+    </div>
+</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ chantier.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ chantier.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ chantier.description }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ chantier.image }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ chantier.date ? chantier.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class ="d-flex justify-content-center align-items-center gap-5">
+<a href="{{ path('app_chantier_index') }}" class="btn btn-primary">retour à la liste</a>
 
-    <a href="{{ path('app_chantier_index') }}" class="btn btn-primary">back to list</a>
+<a href="{{ path('app_chantier_edit', {'id': chantier.id}) }}" class="btn btn-primary">Modifier</a>
+{{ include('chantier/_delete_form.html.twig') }}
+</div>
 
-    <a href="{{ path('app_chantier_edit', {'id': chantier.id}) }}" class="btn btn-primary">edit</a>
-
-    {{ include('chantier/_delete_form.html.twig') }}
 {% endblock %}

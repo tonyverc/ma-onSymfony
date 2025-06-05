@@ -32,6 +32,20 @@ final class ChantierController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $newFilename = uniqid().'.'.$imageFile->guessExtension();
+                try {
+                    $imageFile->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+                } catch (\Exception $e) {
+                    $this->addFlash('error', 'Erreur lors de l\'upload de l\'image.');
+                    return $this->redirectToRoute('app_chantier_new');
+                }
+                $chantier->setImage($newFilename);
+            }
             $entityManager->persist($chantier);
             $entityManager->flush();
 
@@ -47,6 +61,7 @@ final class ChantierController extends AbstractController
     #[Route('/{id}', name: 'app_chantier_show', methods: ['GET'])]
     public function show(Chantier $chantier): Response
     {
+
         return $this->render('chantier/show.html.twig', [
             'chantier' => $chantier,
         ]);
