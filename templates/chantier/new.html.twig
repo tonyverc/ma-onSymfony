@@ -1,25 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Chantier{% endblock %}
-
-{% block body %}
-<style>
-    body{
-        color:white;
-    }
-</style>
-<div class="container d-flex justify-content-center flex-column align-items-center mt-5 min-vh-100">
-    <h1 class="text-center">Nouveau Chantier</h1>
-
-    {% if app.user %}
-        <p class="text-center">Bienvenue, {{ app.user.username }}!</p>
-    {% else %}
-        <p class="text-center">Veuillez vous connecter pour créer un nouveau chantier.</p>
-    {% endif %}
-
-    {{ include('chantier/_form.html.twig') }}
-
-    <a href="{{ path('app_chantier_index') }}" class="btn btn-primary" >Retour à la liste</a>
-</div>
+{% block title %}Creation nouveau Chantier
 {% endblock %}
 
+{% block body %}
+	<style>
+		body {
+			color: white;
+		}
+	</style>
+	<h1 class ="py-3">Ajouter un nouveau chantier</h1>
+
+	{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+
+	{{ form_row(form.nom) }}
+	{{ form_row(form.description) }}
+	{{ form_row(form.date) }}
+	{{ form_row(form.image) }}
+    
+	<div class ="py-5">
+		<button class="btn btn-success">Sauvegarder</button>
+		<a href="{{ path('app_chantier_index') }}" class="btn btn-secondary">Retour à la liste</a>
+	</div>
+	{{ form_end(form) }}
+{% endblock %}

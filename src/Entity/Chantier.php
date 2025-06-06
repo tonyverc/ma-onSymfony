@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ChantierRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +14,9 @@ class Chantier
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    
+    // Asert permet de s'assurer que la valeur envoyer en bdd n'est pas vide
+    #[Assert\NotBlank] 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
