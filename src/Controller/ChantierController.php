@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 #[Route('/chantier')]
 final class ChantierController extends AbstractController
 {
@@ -24,7 +25,6 @@ final class ChantierController extends AbstractController
     }
 
     #[Route('/new', name: 'app_chantier_new', methods: ['GET', 'POST'])]
-    // #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $chantier = new Chantier();
