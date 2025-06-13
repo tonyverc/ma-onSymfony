@@ -17,7 +17,7 @@ class ContactTypeForm extends AbstractType
     {
         $builder
             ->add('nom', TextType::class , [
-                'label'=>'votre nom',
+                'label'=>'Votre nom 👈🏼',
                 'attr'=>[
                     'placeholder'=>'Entrez votre nom',
                     'class'=>'form-control',
@@ -25,14 +25,14 @@ class ContactTypeForm extends AbstractType
                 ],
             ])
             ->add('prenom', TextType::class, [
-                'label'=>'Votre prenom',
+                'label'=>'Votre prenom 👀',
                 'attr'=>[
                     'placeholder'=>'exemple@email.com',
                     'class'=>'form-control',
                 ],
             ])
             ->add('email', EmailType::class, [
-                'label'=>'Votre email',
+                'label'=>'Votre email 📧 ',
                 'attr'=>[
                     'placeholder'=>'Votre email ici...',
                     'class'=>'form-control',
@@ -40,7 +40,7 @@ class ContactTypeForm extends AbstractType
                 ]
             ])
             ->add('telephone', IntegerType::class, [
-                'label'=>'Votre telephone',
+                'label'=>'Votre telephone 📱',
                 'attr'=>[
                     'placeholder'=>'Entrez votre numero de telephone',
                     'class'=>'form-control',
@@ -48,7 +48,7 @@ class ContactTypeForm extends AbstractType
             ])
 
             ->add('message', TextareaType::class, [
-                'label'=>'Votre message',
+                'label'=>'Votre message 📨',
                 'attr'=>[
                     'placeholder'=>'Entrez votre message ici...',
                     'class'=>'form-control',

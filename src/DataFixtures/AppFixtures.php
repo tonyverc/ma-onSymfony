@@ -3,11 +3,20 @@
 namespace App\DataFixtures;
 
 use App\Entity\Services;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private UserPasswordHasherInterface $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
         $service = new Services();
@@ -23,7 +32,6 @@ class AppFixtures extends Fixture
         $service->setImage("image/salle de bains.jpg");
         $manager->persist($service);
 
-        $manager->flush();
 
         $service = new Services();
         $service->setNom("Cuisine");
@@ -37,7 +45,6 @@ class AppFixtures extends Fixture
         $service->setImage("image/cuisine.webp");
         $manager->persist($service);
 
-        $manager->flush();
 
         $service = new Services();
         $service->setNom("Carrelage");
@@ -50,7 +57,6 @@ class AppFixtures extends Fixture
         $service->setImage("image/carrelage.jpg");
         $manager->persist($service);
 
-        $manager->flush();
 
         $service = new Services();
         $service->setNom("Extension de maison");
@@ -66,7 +72,6 @@ class AppFixtures extends Fixture
         $service->setImage("image/extension-toit-zinc.jpg");
         $manager->persist($service);
 
-        $manager->flush();
 
         $service = new Services();
         $service->setNom("Chape fluide");
@@ -81,7 +86,6 @@ class AppFixtures extends Fixture
         $service->setImage("image/chape-liquide.jpg");
         $manager->persist($service);
 
-        $manager->flush();
 
         $service = new Services();
         $service->setNom("Terrasse");
@@ -95,6 +99,20 @@ class AppFixtures extends Fixture
                                     Conforme aux normes en vigueur pour les espaces extérieurs (sécurité et accessibilité).");
         $service->setImage("image/terrasse.webp");
         $manager->persist($service);
+
+
+        $user = new User();
+        $user->setEmail('toto@exemple.com');
+        $plaintextPassword = 'azerty';
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $user,
+            $plaintextPassword
+        );
+        $user->setPassword($hashedPassword);
+        $user->setRoles(['ROLE_ADMIN' , 'ROLE_USER']);
+        $user->setPseudo('toto');
+        $user->setIsVerified(true);
+        $manager->persist($user);
 
         $manager->flush();
     }

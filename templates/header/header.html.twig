@@ -1,54 +1,53 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fs-3">
-  <img src="image/sans fond.png" class="img-fluid" style="max-width:100px;" alt="">
-  <div class="container justify-content-center">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+	<img src="image/sans fond.png" class="img-fluid" style="max-width:100px;" alt="">
+	<h1>Maçon'ne tout</h1>
+	<div class="container justify-content-center">
+		<div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+			<ul class="navbar-nav mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_services') }}">Services</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+				</li>
 
-    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_services') }}">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
-        </li>
+				{# Lien Chantier visible uniquement pour ROLE_ADMIN #}
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_chantier_index') }}">Chantier</a>
+					</li>
+				{% endif %}
+			</ul>
+			<form class="d-flex ms-4" role="search">
+        🔍
+				<input class="form-control me-2" type="search" placeholder="" aria-label="Search"/>
+				<button class="btn btn-outline-success" type="submit">Rechercher</button>
+			</form>
 
-        {# Lien Chantier visible uniquement pour ROLE_ADMIN #}
-        {% if is_granted('ROLE_ADMIN') %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_chantier_index') }}">Chantier</a>
-          </li>
-        {% endif %}
-      </ul>
-
-      <form class="d-flex ms-4" role="search">
-        <input class="form-control me-2" type="search" placeholder="" aria-label="Search" />
-        <button class="btn btn-outline-success" type="submit">Rechercher</button>
-      </form>
-
-      <div class="justify-content-end ms-4">
-        {# Si l'utilisateur est connecté, afficher son nom #}
-        {% if is_granted('IS_AUTHENTICATED') %}
-          <span class="navbar-text me-3">
-            Bonjour, {{ app.user.username }}!
-          </span>
-        {% endif %}
-        {# Si l'utilisateur n'est pas connecté #}
-        {% if not is_granted('IS_AUTHENTICATED') %}
-          <a href="{{ path('app_login') }}" class="btn btn-outline-primary me-2">Connexion</a>
-          <a href="{{ path('app_register') }}" class="btn btn-outline-primary">Inscription</a>
-        {% else %}
-          {# Si l'utilisateur est connecté #}
-          <form method="post" action="{{ path('app_logout') }}">
-            <button type="submit" class="btn btn-outline-danger">Déconnexion</button>
-          </form>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+			<div
+				class="ms-auto d-flex align-items-center">
+				{# Si l'utilisateur est connecté, afficher son nom #}
+				{% if is_granted('IS_AUTHENTICATED') %}
+					<span class="navbar-text me-3">
+						Bonjour,
+						{{ app.user.pseudo }}
+						!
+					</span>
+				{% endif %}
+				{# Si l'utilisateur n'est pas connecté #}
+				{% if not is_granted('IS_AUTHENTICATED') %}
+					<a href="{{ path('app_login') }}" class="btn btn-outline-primary me-2">Connexion</a>
+					<a href="{{ path('app_register') }}" class="btn btn-outline-primary">Inscription</a>
+				{% else %}
+					{# Si l'utilisateur est connecté #}
+					<form method="post" action="{{ path('app_logout') }}">
+						<button type="submit" class="btn btn-outline-danger">Déconnexion</button>
+					</form>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 </nav>
